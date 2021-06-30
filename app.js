@@ -1,4 +1,5 @@
-const express = require('express')
+import express from 'express'
+import loginRoutes from './routes/loginRoutes.js'
 
 const app = express()
 const PORT = 3000
@@ -6,11 +7,9 @@ const PORT = 3000
 app.set('view engine', 'pug')
 app.set('views', 'views')
 
-app.get('/', (req, res) => {
-    const title = 'Home'
+app.use(express.static('public'))
 
-    res.render('home', { title })
-})
+app.use('/login', loginRoutes)
 
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
